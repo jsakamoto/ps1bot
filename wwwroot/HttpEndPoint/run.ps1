@@ -49,6 +49,15 @@ $requestBody.events | where type -eq "message" | % {
                     Invoke-Reply $event $text 
                 }
 
+                # ソースコードの在りかを知る
+                "SourceCode" {
+                    $texts = @(
+                        "GitHub でソースコードを公開しています。",
+                        "https://github.com/jsakamoto/ps1bot"
+                    )
+                    Invoke-Reply $event ($texts -join "`n") 
+                }
+
                 # CLR/H について知る
                 "AboutCLRH" {
                     $texts = @(
