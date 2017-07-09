@@ -73,7 +73,8 @@ $requestBody.events | where type -eq "message" | % {
                 "AboutCLRH" {
                     $texts = @(
                         "CLR/H は、北海道で IT 関連、特に開発系技術に関する学習と研究を目的としたコミュニティです。 CLR/H には `"Creation Leads to Revolution with Humanity (or Humor :-)`" という意味もあります。",                        
-                        "定期的に勉強会およびイベントを開催し、参加者同士の情報交換や技術研鑽を行っております。会の成り立ちから、Microsoft .NET テクノロジー関連の話題が多いですが、それ以外の話題を取り上げることもあります。"
+                        "定期的に勉強会およびイベントを開催し、参加者同士の情報交換や技術研鑽を行っております。会の成り立ちから、Microsoft .NET テクノロジー関連の話題が多いですが、それ以外の話題を取り上げることもあります。",
+                        "http://clr-h.jp"
                     )
                     Invoke-Reply $event ($texts -join "`n") 
                 }
