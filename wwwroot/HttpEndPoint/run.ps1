@@ -18,8 +18,8 @@ $requestBody.events | where type -eq "message" | % {
 
         # 実行時に文字列を式として評価できるので評価できるので (JavaScript の eval と同様)、
         # これを活かして四則演算であればそのまま評価して計算結果を返す、電卓モード機能を搭載しました。
-        elseif ($messageText -match "^\-?\d+(\.\d+)?([ ]*[\+\-\*\/][ ]*\-?\d+(\.\d+)?)*$") {
-            $resultOfCaliculate = iex $messageText
+        elseif ($messageText -match "^\-?\d+(\.\d+)?([ ]*[\+\-\*\/][ ]*\-?\d+(\.\d+)?)*([ ]*=[ ]*)?$") {
+            $resultOfCaliculate = iex $messageText.TrimEnd(" ", "=")
             Invoke-Reply $event ("{0}" -f $resultOfCaliculate)
         }
 
