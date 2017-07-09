@@ -58,6 +58,17 @@ $requestBody.events | where type -eq "message" | % {
                     Invoke-Reply $event ($texts -join "`n") 
                 }
 
+                # 環境変数の表示
+                "ShowEnvVal" {
+                    $command = "ls env: | where name -like USER* | sort value | select -first 3"
+                    $result = iex $command | Out-String
+                    $texts = @(
+                        ("> " + $command),
+                        $result.Trim()
+                    )
+                    Invoke-Reply $event ($texts -join "`n") 
+                }
+
                 # CLR/H について知る
                 "AboutCLRH" {
                     $texts = @(
