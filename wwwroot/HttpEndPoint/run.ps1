@@ -38,7 +38,7 @@ $requestBody.events | where type -eq "message" | % {
                 }
                 
                 # PowerShell バージョンを知る
-                "TellMeYourVersion"{
+                "TellMeYourVersion" {
                     $text = $PSVersionTable | ft -HideTableHeaders -AutoSize | Out-String
                     Invoke-Reply $event $text.TrimEnd("`r", "`n", " ")
                 }
@@ -61,7 +61,7 @@ $requestBody.events | where type -eq "message" | % {
                 # 環境変数の表示
                 "ShowEnvVal" {
                     $command = "ls env: | where name -like USER* | sort value | select -first 3"
-                    $result = iex $command | Out-String
+                    $result = iex $command | Format-Table -AutoSize -HideTableHeaders | Out-String
                     $texts = @(
                         ("> " + $command),
                         $result.Trim()
@@ -101,7 +101,7 @@ $requestBody.events | where type -eq "message" | % {
         $ErrorActionPreference = "Continue"
         Invoke-Reply $event "すみません、エラーが発生しました。"
     }
-    finally{
+    finally {
         $ErrorActionPreference = "Continue"
     }
 }
